@@ -97,6 +97,7 @@ void doFire(Database& db)
 
     cout << "Employee number? ";
     cin >> employeeNumber;
+    cout<<"test"<< endl;
 
     try {
         Employee& emp = db.getEmployee(employeeNumber);
