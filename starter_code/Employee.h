@@ -4,12 +4,14 @@
 
 namespace Records {
 	const int kDefaultStartingSalary = 30000;
-
 	class Employee
 	{
 	public:
 		Employee() = default;
 		Employee(const std::string& firstName, const std::string& lastName);
+		Employee(const std::string& firstName, 
+				const std::string& middleName,
+				const std::string& lastName);
 
 		void promote(int raiseAmount = 1000);
 		void demote(int demeritAmount = 1000);
@@ -35,9 +37,9 @@ namespace Records {
 	private:
 		std::string mFirstName;
 		std::string mLastName;
+		std::string mMiddleName;
 		int mEmployeeNumber = -1;
 		int mSalary = kDefaultStartingSalary;
 		bool mHired = false;
 	};
 }
-
