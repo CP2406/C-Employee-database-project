@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include "my_debugger.h"
 #include "Database.h"
 
 using namespace std;
@@ -9,13 +10,26 @@ namespace Records {
 	Employee& Database::addEmployee(const string& firstName,
 		const string& lastName)
 	{
+		log("started");
 		Employee theEmployee(firstName, lastName);
 		theEmployee.setEmployeeNumber(mNextEmployeeNumber++);
 		theEmployee.hire();
 		mEmployees.push_back(theEmployee);
-
+		log("end");
 		return mEmployees[mEmployees.size() - 1];
 	}
+		
+	Employee& Database::addEmployee(const string& firstName,
+	const string& middleName,const string& lastName)
+		{
+			log("started");
+			Employee theEmployee(firstName,middleName, lastName);
+			theEmployee.setEmployeeNumber(mNextEmployeeNumber++);
+			theEmployee.hire();
+			mEmployees.push_back(theEmployee);
+			log("end");
+			return mEmployees[mEmployees.size() - 1];
+		}
 
 	Employee& Database::getEmployee(int employeeNumber)
 	{
