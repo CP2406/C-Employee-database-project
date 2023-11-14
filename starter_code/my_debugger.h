@@ -27,7 +27,7 @@ using namespace std;
     private:
     static const string msDebugFileName;
     };
-    const string Logger::msDebugFileName="debugfile.out";
+    // const string Logger::msDebugFileName="debugfile.txt";
 
     #define log(...) Logger::log(__func__, "(): ", __VA_ARGS__)
 #else
