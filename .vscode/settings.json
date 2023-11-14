@@ -3,6 +3,8 @@
         "main"
     ],
     "files.associations": {
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "cmath": "cpp"
     }
 }

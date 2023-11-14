@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+// #include "my_debugger.h"
 #include "Employee.h"
 
 namespace Records {
@@ -11,7 +12,12 @@ namespace Records {
 	{
 	public:
 		Employee& addEmployee(const std::string& firstName,
-							  const std::string& lastName);
+							  const std::string& lastName);						  		  
+		Employee& addEmployee(
+			const std::string& firstName,
+			const std::string& middleName,
+			const std::string& lastName);
+
 		Employee& getEmployee(int employeeNumber);
 		Employee& getEmployee(const std::string& firstName,
 							  const std::string& lastName);
@@ -19,6 +25,7 @@ namespace Records {
 		void displayAll() const;
 		void displayCurrent() const;
 		void displayFormer() const;
+		// void makeNewDatabase();
 
 	private:
 		std::vector<Employee> mEmployees;
