@@ -9,16 +9,19 @@
 
 using namespace std;
 using namespace Records;
+const string Logger::msDebugFileName="debugfile.txt";
 
 int displayMenu();
 void doHire(Database& db);
 void doFire(Database& db);
 void doPromote(Database& db);
 void doDemote(Database& db);
+Database makeNewDatabase();
 
 
 int main()
 {
+    log("started");
 	Database employeeDB;
 
 	bool done = false;
@@ -26,10 +29,12 @@ int main()
 		int selection = displayMenu();
 		switch (selection) {
 		case 0:
+            log("case 0");
 			done = true;
 			break;
 		case 1:
 			doHire(employeeDB);
+            log("case 1");
 			break;
 		case 2:
 			doFire(employeeDB);
@@ -46,13 +51,19 @@ int main()
 		case 6:
 			employeeDB.displayFormer();
 			break;
+        case 7:
+            employeeDB=makeNewDatabase();
+            break;
+
 		default:
 			cerr << "Unknown command." << endl;
+            log("case default");
 			break;
 		}
 	}
 
 	return 0;
+   
 }
 
 int displayMenu()
@@ -74,6 +85,7 @@ int displayMenu()
     cout << "4) List all employees" << endl;
     cout << "5) List all current employees" << endl;
     cout << "6) List all former employees" << endl;
+    cout << "7) Make new database" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";
@@ -84,7 +96,8 @@ int displayMenu()
 }
 
 void doHire(Database& db)
-{
+{   
+    log("start");
     string firstName;
     string lastName;
 
@@ -94,10 +107,11 @@ void doHire(Database& db)
     cin >> lastName;
     
     db.addEmployee(firstName, lastName);
+    log("end");
 }
 
 void doFire(Database& db)
-{
+{  
     int employeeNumber;
 
     cout << "Employee number? ";
@@ -130,3 +144,41 @@ void doPromote(Database& db)
         cerr << "Unable to promote employee: " << exception.what() << endl;
     }
 }
+Database makeNewDatabase()
+    {
+        vector<string> arrFirst{
+
+            "first1","Ann","Bob","first2","Cathy",
+            "first3","Ann2","Bob2","first10","Cathy2",
+            "first4","Ann3","Bob3","first11","Cathy3",
+            "first5","Ann4","Bob4","first12","Cathy4",
+        
+        };
+        vector<string> arrMiddle{
+
+            "middle1","Don","Bob","first2","Cathy",
+            "middle3","Don2","Bob2","first10","Cathy2",
+            "middle4","Don3","Bob3","first11","Cathy3",
+            "middle5","Don4","Bob4","first12","Cathy4",
+        
+        };
+
+        // vector<string> arrMiddle{
+
+        //     "middle1","Don","Bob","first2","Cathy",
+        //     "middle3","Don2","Bob2","first10","Cathy2",
+        //     "middle4","Don3","Bob3","first11","Cathy3",
+        //     "middle5","Don4","Bob4","first12","Cathy4",
+        
+        // };
+
+        Database db;
+
+        for (const string& firstName:arrFirst){
+           
+            db.addEmployee(firstName, "Mylastname");
+   
+        }
+        return db;
+
+    }
