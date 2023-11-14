@@ -163,22 +163,25 @@ Database makeNewDatabase()
         
         };
 
-        // vector<string> arrMiddle{
+        vector<string> arrLast{
 
-        //     "middle1","Don","Bob","first2","Cathy",
-        //     "middle3","Don2","Bob2","first10","Cathy2",
-        //     "middle4","Don3","Bob3","first11","Cathy3",
-        //     "middle5","Don4","Bob4","first12","Cathy4",
-        
-        // };
+            "last1","Smith","Smith5","last5","lasta",
+            "last2","Smith2","Smith6","last6","lastb",
+            "last3","Smith3","Smith7","last7","lastc",
+            "last4","Smith4","Smith8","last8","lastd",
+        };
 
         Database db;
 
         for (const string& firstName:arrFirst){
-           
-            db.addEmployee(firstName, "Mylastname");
+            for (const string& middleName:arrMiddle){
+                for (const string& lastName:arrLast){
+            db.addEmployee(firstName, middleName,lastName);
    
+                }
+            }
         }
         return db;
+        
 
     }
