@@ -10,6 +10,11 @@ namespace Records {
 		, mLastName(lastName)
 	{
 	}
+	Employee::Employee(const std::string& firstName, const std::string& middleName,const std::string& lastName)
+		: mFirstName(firstName), mMiddleName(middleName),
+		mLastName(lastName)
+	{
+	}
 
 	void Employee::promote(int raiseAmount)
 	{
@@ -86,5 +91,6 @@ namespace Records {
 	{
 		return mHired;
 	}
+	
 
 }
