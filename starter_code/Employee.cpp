@@ -37,12 +37,14 @@ namespace Records {
 	}
 
 	void Employee::display() const
-	{
-		cout << "Employee: " << getLastName() << ", " << getFirstName() << endl;
+	{ 
+		cout << "Employee: "<< getLastName() << ", "<< getFirstName() << endl;
+		cout << "Middle Name: "<< getMiddleName() << endl;
+		cout << "Address: "<< getAddress() << endl;
 		cout << "-------------------------" << endl;
 		cout << (isHired() ? "Current Employee" : "Former Employee") << endl;
 		cout << "Employee Number: " << getEmployeeNumber() << endl;
-		cout << "Salary: $" << getSalary() << endl;
+		cout << "Salary: $" << getSalary() << endl;	
 		cout << endl;
 	}
 
@@ -56,6 +58,17 @@ namespace Records {
 	{
 		return mFirstName;
 	}
+
+	void Employee::setMiddleName(const string& middleName)
+	{
+		mMiddleName = middleName;
+	}
+
+	const string& Employee::getMiddleName() const
+	{
+		return mMiddleName;
+	}
+
 
 	void Employee::setLastName(const string& lastName)
 	{
@@ -77,6 +90,17 @@ namespace Records {
 		return mEmployeeNumber;
 	}
 
+	void Employee::setAddress(const string& address)
+		{
+			mAddress= address;
+		}
+
+	const string& Employee::getAddress() const
+		{
+			return mAddress;
+		}
+
+
 	void Employee::setSalary(int salary)
 	{
 		mSalary = salary;
@@ -91,6 +115,5 @@ namespace Records {
 	{
 		return mHired;
 	}
-	
 
 }
