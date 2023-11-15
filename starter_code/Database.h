@@ -25,7 +25,8 @@ namespace Records {
 		void displayAll() const;
 		void displayCurrent() const;
 		void displayFormer() const;
-		// void makeNewDatabase();
+		void saveToFile() const;
+		void loadFromFile() const;
 
 	private:
 		std::vector<Employee> mEmployees;
