@@ -19,15 +19,24 @@ namespace Records {
 		void fire(); // Dismisses the employee
 		void display() const;// Outputs employee info to console
 
+
 		// Getters and setters
 		void setFirstName(const std::string& firstName);
 		const std::string& getFirstName() const;
+
+		void setMiddleName(const std::string& middleName);
+		const std::string& getMiddleName() const;
+
 
 		void setLastName(const std::string& lastName);
 		const std::string& getLastName() const;
 
 		void setEmployeeNumber(int employeeNumber);
 		int getEmployeeNumber() const;
+
+		void setAddress(const std::string& address);
+		const std::string& getAddress() const;
+
 
 		void setSalary(int newSalary);
 		int getSalary() const;
@@ -38,6 +47,7 @@ namespace Records {
 		std::string mFirstName;
 		std::string mLastName;
 		std::string mMiddleName;
+		std::string mAddress;
 		int mEmployeeNumber = -1;
 		int mSalary = kDefaultStartingSalary;
 		bool mHired = false;
