@@ -5,7 +5,7 @@
 #include "Database.h"
 #include <cstddef>
 #include <fstream>
-
+#include <iomanip>
 
 using namespace std;
 using namespace Records;
@@ -17,7 +17,6 @@ void doFire(Database& db);
 void doPromote(Database& db);
 void doDemote(Database& db);
 Database makeNewDatabase();
-
 
 int main()
 {
@@ -54,8 +53,11 @@ int main()
         case 7:
             employeeDB=makeNewDatabase();
             break;
+        case 8:
+            employeeDB.saveToFile();
+            break;
 
-		default:
+        default:
 			cerr << "Unknown command." << endl;
             log("case default");
 			break;
@@ -86,6 +88,7 @@ int displayMenu()
     cout << "5) List all current employees" << endl;
     cout << "6) List all former employees" << endl;
     cout << "7) Make new database" << endl;
+    cout << "8) Save to File" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";
@@ -149,34 +152,41 @@ Database makeNewDatabase()
         vector<string> arrFirst{
 
             "first1","Ann","Bob","first2","Cathy",
-            "first3","Ann2","Bob2","first10","Cathy2",
-            "first4","Ann3","Bob3","first11","Cathy3",
-            "first5","Ann4","Bob4","first12","Cathy4",
+            // "first3","Ann2","Bob2","first10","Cathy2",
+            // "first4","Ann3","Bob3","first11","Cathy3",
+            // "first5","Ann4","Bob4","first12","Cathy4",
         
         };
         vector<string> arrMiddle{
 
             "middle1","Don","Bob","first2","Cathy",
-            "middle3","Don2","Bob2","first10","Cathy2",
-            "middle4","Don3","Bob3","first11","Cathy3",
-            "middle5","Don4","Bob4","first12","Cathy4",
+            // "middle3","Don2","Bob2","first10","Cathy2",
+            // "middle4","Don3","Bob3","first11","Cathy3",
+            // "middle5","Don4","Bob4","first12","Cathy4",
         
         };
 
         vector<string> arrLast{
 
-            "last1","Smith","Smith5","last5","lasta",
-            "last2","Smith2","Smith6","last6","lastb",
-            "last3","Smith3","Smith7","last7","lastc",
-            "last4","Smith4","Smith8","last8","lastd",
+            "last1","Smith","Lily","Steven","Jim",
+            // "last2","Smith2","Lily1","Steven1","Jim1",
+            // "last3","Smith3","Lily2","Steven2","Jim2",
+            // "last4","Smith4","Lily3","Steven3","Jim3",
         };
 
         Database db;
+        int count=0;
 
         for (const string& firstName:arrFirst){
             for (const string& middleName:arrMiddle){
                 for (const string& lastName:arrLast){
-            db.addEmployee(firstName, middleName,lastName);
+                count++;
+                //random streetNumber
+                string countStr =to_string(count);
+                Employee& empl=db.addEmployee(firstName, middleName,lastName);
+                //random address
+                string address =countStr + " street# " + "Cairns";
+                empl.setAddress(address);
    
                 }
             }
