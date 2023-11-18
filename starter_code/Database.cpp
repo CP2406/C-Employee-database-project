@@ -3,6 +3,10 @@
 #include "my_debugger.h"
 #include "Database.h"
 #include <iomanip>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <ostream>
 
 using namespace std;
 
@@ -96,9 +100,9 @@ namespace Records {
 
 		for (const auto& employee : mEmployees) {
 			// Quote all parts of the name to support spaces in names
-			outFile << std::quoted(employee.getFirstName())
-					<< std::quoted(employee.getMiddleName())
-					<< std::quoted(employee.getLastName()) << std::endl;
+			outFile << quoted(employee.getFirstName())
+					<< quoted(employee.getMiddleName())
+					<< quoted(employee.getLastName())<<endl;
 		}
 		if(is_overwrite){
 			cout << "File overwritten successfully " << endl;
@@ -115,13 +119,40 @@ namespace Records {
 		string loadFile;
 		cout << "Enter the name of load file: " << endl;
 		cin >> loadFile;
-		
 
-
-
-
-	}
-
-
-
+		ifstream inFile{ loadFile.data() };
+		if (!inFile) {
+			string errorString ="Cannot open file: " ;
+			throw runtime_error(errorString);
+		}
+		while (inFile) {	
+			string line;
+			getline(inFile, line);
+			if (!inFile && !inFile.eof()) {
+				throw runtime_error{ "Failed to read line from file." };
+			}
+			if (line.empty()) { // Skip empty lines
+				continue;
+			}
+        // Make a string stream and parse it.
+        istringstream inLine{ line };
+		string nfirstName, nmiddleName, nlastName;
+		for (const auto& employee : mEmployees) {
+			 inLine >> quoted(nfirstName)>> quoted(nmiddleName)>> quoted(nlastName);
+		}
+        if (inLine.bad()) {
+            // cerr << "Error reading person. Ignoring." << endl;
+            throw runtime_error{ "Error reading person. Ignoring." };
+            continue;
+        }
+		   
+		// Create a person and add it to the database.
+        // mEmployees.push_back(Employee{nfirstName, nmiddleName,nlastName});
+    }
 }
+		// void Database::outputAll(ostream& cout) const
+		// {
+		// 	for (const auto& employee : mEmployees) {
+		// 		cout<<employee.getFirstName()<<endl;
+		// 	}
+		}
