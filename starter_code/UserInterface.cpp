@@ -56,6 +56,9 @@ int main()
         case 8:
             employeeDB.saveToFile();
             break;
+         case 9:
+            employeeDB.loadFromFile();
+            break;
 
         default:
 			cerr << "Unknown command." << endl;
@@ -88,7 +91,8 @@ int displayMenu()
     cout << "5) List all current employees" << endl;
     cout << "6) List all former employees" << endl;
     cout << "7) Make new database" << endl;
-    cout << "8) Save to File" << endl;
+    cout << "8) Save database to file" << endl;
+    cout << "9) Load database from file" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";
