@@ -14,7 +14,7 @@ using namespace std;
         template<typename... Args>
         static void log(const Args&... args)
         {
-            ofstream logfile { msDebugFileName, ios_base::app };
+            ofstream logfile { msDebugFileName};//Amy removed ios_base::app
             if (logfile.fail()) {
             cerr << "Unable to open debug file!" << endl;
             return;
