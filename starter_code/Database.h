@@ -27,6 +27,7 @@ namespace Records {
 		void displayFormer() const;
 		void saveToFile() const;
 		void loadFromFile() const;
+	
 
 	private:
 		std::vector<Employee> mEmployees;
