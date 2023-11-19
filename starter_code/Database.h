@@ -26,7 +26,7 @@ namespace Records {
 		void displayCurrent() const;
 		void displayFormer() const;
 		void saveToFile() const;
-		void loadFromFile() const;
+		void loadFromFile();
 	
 
 	private:
