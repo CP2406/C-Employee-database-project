@@ -156,26 +156,26 @@ Database makeNewDatabase()
         vector<string> arrFirst{
 
             "first1","Ann","Bob","first2","Cathy",
-            // "first3","Ann2","Bob2","first10","Cathy2",
-            // "first4","Ann3","Bob3","first11","Cathy3",
-            // "first5","Ann4","Bob4","first12","Cathy4",
+            "first3","Ann2","Bob2","first10","Cathy2",
+            "first4","Ann3","Bob3","first11","Cathy3",
+            "first5","Ann4","Bob4","first12","Cathy4",
         
         };
         vector<string> arrMiddle{
 
             "middle1","Don","Bob","first2","Cathy",
-            // "middle3","Don2","Bob2","first10","Cathy2",
-            // "middle4","Don3","Bob3","first11","Cathy3",
-            // "middle5","Don4","Bob4","first12","Cathy4",
+            "middle3","Don2","Bob2","first10","Cathy2",
+            "middle4","Don3","Bob3","first11","Cathy3",
+            "middle5","Don4","Bob4","first12","Cathy4",
         
         };
 
         vector<string> arrLast{
 
             "last1","Smith","Lily","Steven","Jim",
-            // "last2","Smith2","Lily1","Steven1","Jim1",
-            // "last3","Smith3","Lily2","Steven2","Jim2",
-            // "last4","Smith4","Lily3","Steven3","Jim3",
+            "last2","Smith2","Lily1","Steven1","Jim1",
+            "last3","Smith3","Lily2","Steven2","Jim2",
+            "last4","Smith4","Lily3","Steven3","Jim3",
         };
 
         Database db;
