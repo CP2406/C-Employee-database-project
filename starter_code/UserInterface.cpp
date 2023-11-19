@@ -16,6 +16,7 @@ void doHire(Database& db);
 void doFire(Database& db);
 void doPromote(Database& db);
 void doDemote(Database& db);
+void editEployee(Database& db);
 Database makeNewDatabase();
 
 int main()
@@ -56,9 +57,13 @@ int main()
         case 8:
             employeeDB.saveToFile();
             break;
-         case 9:
+        case 9:
             employeeDB.loadFromFile();
             break;
+        case 10:
+            editEployee(employeeDB);
+            break;
+        
 
         default:
 			cerr << "Unknown command." << endl;
@@ -93,6 +98,7 @@ int displayMenu()
     cout << "7) Make new database" << endl;
     cout << "8) Save database to file" << endl;
     cout << "9) Load database from file" << endl;
+    cout << "10) Edit employee" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";
@@ -151,6 +157,28 @@ void doPromote(Database& db)
         cerr << "Unable to promote employee: " << exception.what() << endl;
     }
 }
+
+void editEployee(Database& db)
+
+{
+     int employeeNumber;
+    cout << "Employee number? ";
+    cin >> employeeNumber;
+    cout<<"test"<< endl;
+
+    try {
+        Employee& emp = db.getEmployee(employeeNumber);
+        string new_address;
+        cin>>new_address;
+        emp.setAddress(new_address);
+        cout << "Employee " << employeeNumber << " new address." <<emp.getAddress()<<endl;
+    } catch (const std::logic_error& exception) {
+        cerr << "Unable to change the address of the employee: " << exception.what() << endl;
+    }
+}
+
+
+
 Database makeNewDatabase()
     {
         vector<string> arrFirst{
