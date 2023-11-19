@@ -114,45 +114,51 @@ namespace Records {
 		
 	}
 
-
-	void Database::loadFromFile() const {
+	void Database::loadFromFile() {
 		string loadFile;
+		vector<Employee> nEmployees;  // Create vector type employees container
 		cout << "Enter the name of load file: " << endl;
 		cin >> loadFile;
-
 		ifstream inFile{ loadFile.data() };
 		if (!inFile) {
-			string errorString ="Cannot open file: " ;
+			string errorString = "Cannot open file: ";
 			throw runtime_error(errorString);
 		}
-		while (inFile) {	
-			string line;
-			getline(inFile, line);
-			if (!inFile && !inFile.eof()) {
-				throw runtime_error{ "Failed to read line from file." };
-			}
-			if (line.empty()) { // Skip empty lines
-				continue;
-			}
+
+		while (inFile) {
+        // Read line by line
+		//skip empty lines.
+    
+        string line;
+        getline(inFile, line);
+        if (!inFile && !inFile.eof()) {
+            throw runtime_error{ "Failed to read line from file." };
+        }
+        if (line.empty()) { // Skip empty lines
+            continue;
+        }
         // Make a string stream and parse it.
-        istringstream inLine{ line };
+		
+		istringstream inLine(line);
 		string nfirstName, nmiddleName, nlastName;
-		for (const auto& employee : mEmployees) {
-			 inLine >> quoted(nfirstName)>> quoted(nmiddleName)>> quoted(nlastName);
-		}
+        inLine >> quoted(nfirstName) >> quoted(nmiddleName) >> quoted(nlastName);
         if (inLine.bad()) {
-            // cerr << "Error reading person. Ignoring." << endl;
             throw runtime_error{ "Error reading person. Ignoring." };
             continue;
         }
-		   
-		// Create a person and add it to the database.
-        // mEmployees.push_back(Employee{nfirstName, nmiddleName,nlastName});
+        // Create a employee and add it to the database nEmployees.
+        nEmployees.push_back(Employee{ move(nfirstName), move(nmiddleName), move(nlastName) });
     }
-}
-		// void Database::outputAll(ostream& cout) const
-		// {
-		// 	for (const auto& employee : mEmployees) {
-		// 		cout<<employee.getFirstName()<<endl;
-		// 	}
+
+		if (inFile.bad()) {
+			throw runtime_error{ "Error reading employee. Ignoring." };
 		}
+		int count=0; // Loading index
+
+		// loading all the employees
+		for (const auto& employee : nEmployees) {
+			count+=1;
+			cout << "Employee Loading "<<count<<": "<< employee.getFirstName() << " " 
+			<< employee.getMiddleName() << " " << employee.getLastName() << endl;
+		}
+	} }
