@@ -142,36 +142,49 @@ namespace Records {
 
 	}
    //Database Database::searchByFirstName() const
-	Database Database::searchBy(SearchOption option) const{
-		string searchTag=getSearchString();
-		Database result;
-		bool done = false;
-		for (const auto& e:mEmployees){
-			string targetString;
-			switch (option) {
-			case SearchOption::BY_FIRST:
-				 targetString=e.getFirstName();	
-				break;
-			case SearchOption::BY_MIDDLE:
-				targetString=e.getMiddleName();
-				break;
-			case SearchOption::BY_LAST:
-				targetString=e.getLastName();
-				break;	
-			case SearchOption::BY_ADDRESS:
-				targetString=e.getAddress();
-				break;	
-				}
-			size_t pos= targetString.find(searchTag,0);
-			if(pos==string::npos){
-				continue;
+	Database Database::searchBy(SearchOption option) const
+		{
+			string searchTag=getSearchString();
+			Database result;
+			bool done = false;
+			bool foundMatch = false;
+			for (const auto& e:mEmployees)
+			{
+				string targetString;
+				switch (option) 
+					{
+					case SearchOption::BY_FIRST:
+						targetString=e.getFirstName();	
+						break;
+					case SearchOption::BY_MIDDLE:
+						targetString=e.getMiddleName();
+						break;
+					case SearchOption::BY_LAST:
+						targetString=e.getLastName();
+						break;	
+					case SearchOption::BY_ADDRESS:
+						targetString=e.getAddress();
+						break;	
+					}
+
+				size_t pos = targetString.find(searchTag, 0);
+				
+				if (pos != string::npos) 
+					{
+						cout << targetString << endl;
+						e.display();
+						foundMatch = true;
+						// result.addEmployee(e);
+					}
 			}
-			cout << targetString << endl;
-			e.display();
-			// result.addEmployee(e);
-			
-		}
+			cout<<"finished 1"<<endl;
+			if (!foundMatch) 
+				{
+					cout << "No match" << endl;
+				}
+		cout<<"finished 2"<<endl;
 		return result;
+		
 
 	}
 
