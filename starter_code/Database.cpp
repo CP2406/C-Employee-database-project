@@ -36,6 +36,7 @@ namespace Records {
 			return mEmployees[mEmployees.size() - 1];
 		}
 
+
 	Employee& Database::getEmployee(int employeeNumber)
 		{
 			for (auto& employee : mEmployees) {
@@ -80,27 +81,56 @@ namespace Records {
 			}
 		}
 
+	string getSearchString(){
+		string searchTag;
+		cout << "Enter search string here-->" << endl;
+		cin >> searchTag;
+		return searchTag;
 
+	}
+	
+
+	int displayseachMenu()
+		{
+			int selection;
+
+			cout << endl;
+			cout << "Search Employee Database" << endl;
+			cout << "-----------------" << endl;
+			cout << "1) Search by first name" << endl;
+			cout << "2) Search by middle name" << endl;
+			cout << "3) Search by last name" << endl;
+			cout << "4) Search by address" << endl;
+			cout << "0) Quit" << endl;
+			cout << endl;
+			cout << "---> ";
+			
+			cin >> selection;
+			
+			return selection;
+		}
 
 	void Database::searchMenu() const{
 	bool done = false;
+	Database searchResults;
 	while (!done) {
-		int selection = displayseachjMenu();
+		int selection = displayseachMenu();
 		switch (selection) {
 		case 0:
             log("case 0");
 			done = true;
 			break;
-		// case 1:
-		// 	doHire(employeeDB);
-        //     log("case 1");
-		// 	break;
-		// case 2:
-		// 	doFire(employeeDB);
-		// 	break;
-		// case 3:
-		// 	doPromote(employeeDB);
-		// 	break;
+		case 1:
+			searchResults=searchByFirstName();
+			break;
+		case 2:
+			// doFire(employeeDB);
+			cout<<"case 2" <<endl;
+			break;
+		case 3:
+			// doPromote(employeeDB);
+			cout<<"case 3" <<endl;
+			break;
 
         default:
 			cerr << "Unknown command." << endl;
@@ -111,6 +141,23 @@ namespace Records {
 
 	}
 
+	Database Database::searchByFirstName() const{
+		string searchTag=getSearchString();
+		Database result;
+		for (const auto& e:mEmployees){
+			const string& firstName =e.getFirstName();
+			size_t pos= firstName.find(searchTag,0);
+			if(pos==string::npos){
+				continue;
+			}
+			cout << firstName << endl;
+			e.display();
+			// result.addEmployee(e);
+			
+		}
+		return result;
+
+	}
 
 	void Database::saveToFile() const 
 		{
@@ -199,5 +246,6 @@ namespace Records {
 				}
 
 		} 
+
 
 }
