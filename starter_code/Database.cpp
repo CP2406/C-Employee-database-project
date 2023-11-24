@@ -121,17 +121,18 @@ namespace Records {
 			done = true;
 			break;
 		case 1:
-			searchResults=searchByFirstName();
+			searchResults=searchBy(SearchOption::BY_FIRST);
 			break;
 		case 2:
-			// doFire(employeeDB);
-			cout<<"case 2" <<endl;
+			searchResults=searchBy(SearchOption::BY_MIDDLE);
 			break;
 		case 3:
-			// doPromote(employeeDB);
-			cout<<"case 3" <<endl;
+			searchResults=searchBy(SearchOption::BY_LAST);
 			break;
-
+		case 4:
+			searchResults=searchBy(SearchOption::BY_ADDRESS);
+			break;
+				
         default:
 			cerr << "Unknown command." << endl;
             log("case default");
@@ -140,17 +141,33 @@ namespace Records {
 	}
 
 	}
-
-	Database Database::searchByFirstName() const{
+   //Database Database::searchByFirstName() const
+	Database Database::searchBy(SearchOption option) const{
 		string searchTag=getSearchString();
 		Database result;
+		bool done = false;
 		for (const auto& e:mEmployees){
-			const string& firstName =e.getFirstName();
-			size_t pos= firstName.find(searchTag,0);
+			string targetString;
+			switch (option) {
+			case SearchOption::BY_FIRST:
+				 targetString=e.getFirstName();	
+				break;
+			case SearchOption::BY_MIDDLE:
+				targetString=e.getMiddleName();
+				break;
+			case SearchOption::BY_LAST:
+				targetString=e.getLastName();
+				break;	
+			case SearchOption::BY_ADDRESS:
+				targetString=e.getAddress();
+				break;	
+				}
+			const string& targetString =e.getFirstName();
+			size_t pos= targetString.find(searchTag,0);
 			if(pos==string::npos){
 				continue;
 			}
-			cout << firstName << endl;
+			cout << targetString << endl;
 			e.display();
 			// result.addEmployee(e);
 			

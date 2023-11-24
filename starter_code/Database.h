@@ -29,13 +29,17 @@ namespace Records {
 		void saveToFile() const;
 		void loadFromFile();
 		void searchMenu() const;
-		Database searchByFirstName() const;
+		// Database searchByFirstName() const;
 	
 	
 
 	private:
 		std::vector<Employee> mEmployees;
 		int mNextEmployeeNumber = kFirstEmployeeNumber;
-		
+		enum class SearchOption{
+			BY_FIRST,BY_MIDDLE,BY_LAST,BY_ADDRESS
+
+		};
+		Database searchBy(SearchOption op) const;
 	};
 }
