@@ -80,6 +80,38 @@ namespace Records {
 			}
 		}
 
+
+
+	void Database::searchMenu() const{
+	bool done = false;
+	while (!done) {
+		int selection = displayseachjMenu();
+		switch (selection) {
+		case 0:
+            log("case 0");
+			done = true;
+			break;
+		// case 1:
+		// 	doHire(employeeDB);
+        //     log("case 1");
+		// 	break;
+		// case 2:
+		// 	doFire(employeeDB);
+		// 	break;
+		// case 3:
+		// 	doPromote(employeeDB);
+		// 	break;
+
+        default:
+			cerr << "Unknown command." << endl;
+            log("case default");
+			break;
+		}
+	}
+
+	}
+
+
 	void Database::saveToFile() const 
 		{
 			string filename;
