@@ -162,7 +162,6 @@ namespace Records {
 				targetString=e.getAddress();
 				break;	
 				}
-			const string& targetString =e.getFirstName();
 			size_t pos= targetString.find(searchTag,0);
 			if(pos==string::npos){
 				continue;
