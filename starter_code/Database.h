@@ -11,6 +11,7 @@ namespace Records {
 	class Database
 	{
 	public:
+		Employee& addEmployee(Employee& emp1);	
 		Employee& addEmployee(const std::string& firstName,
 							  const std::string& lastName);						  		  
 		Employee& addEmployee(
@@ -28,10 +29,13 @@ namespace Records {
 		void saveToFile() const;
 		void loadFromFile();
 		void searchMenu() const;
+		Database searchByFirstName() const;
+	
 	
 
 	private:
 		std::vector<Employee> mEmployees;
 		int mNextEmployeeNumber = kFirstEmployeeNumber;
+		
 	};
 }
