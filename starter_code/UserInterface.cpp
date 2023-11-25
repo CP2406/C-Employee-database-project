@@ -133,7 +133,7 @@ void doFire(Database& db)
 
     cout << "Employee number? ";
     cin >> employeeNumber;
-    cout<<"test"<< endl;
+ 
 
     try {
         Employee& emp = db.getEmployee(employeeNumber);
@@ -173,6 +173,7 @@ void doEdit(Database& db)
     try {
         Employee& emp = db.getEmployee(employeeNumber);
         bool done = false;
+
         while(!done){
             emp.display();
             int intOption;
@@ -181,25 +182,44 @@ void doEdit(Database& db)
 			cout << "3) Edit hired" << endl;
 			cout << "0) Quit" << endl;
             cin>>intOption;
+            int newSalary;
+            string newAddress; 
+            bool hireStatus;            
             switch(intOption){
                 case 0:
                     cout<<"Quit editing"<<endl;
                     done=true;
                     break;
-                
-                case 1:
-                    cout<<"Edit by salary"<<endl;
-                    int newSalary;
-                    cin>>newSalary;
+                case 1:   
+                    cout<<"Entry New Salary"<<endl;
+                    cin>>newSalary;         
                     emp.setSalary(newSalary);
-                    break;                  
-                    
+                    emp.display();
+                    break; 
+
+                 case 2:
+                    cout<<"Entry New Address"<<endl;                      
+                    cin>>newAddress; 
+                    emp.setAddress(newAddress);
+                    emp.display();
+                    break;  
+                case 3: 
+                    cout << "Change Hire Status" << endl;
+                    cout << "Enter '1' to hire or '0' to fire: ";
+                    cin >> hireStatus; 
+                    if (hireStatus) {
+                        emp.hire();
+                    } else {
+                        emp.fire();
+                    } 
+                    emp.display();
+                    break;
+
+
                     }
 
             }
 		
-
-
 
 
     } catch (const std::logic_error& exception) {
@@ -214,7 +234,7 @@ Database makeNewDatabase()
 
             "first1","Ann","Bob","first2","Cathy",
             "first3","Ann2","Bob2","first10","Cathy2",
-            "first4","Ann3","Bob3","first11","Cathy3",
+            "first4","3Ann3","Bob3","first11","Cathy3",
             "first5","Ann4","Bob4","first12","Cathy4",
         
         };
