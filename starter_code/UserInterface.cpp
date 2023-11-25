@@ -191,14 +191,15 @@ void doEdit(Database& db)
                     done=true;
                     break;
                 case 1:   
-                    cout<<"Entry New Salary"<<endl;
+                    cout<<"Enter New Salary: "<<endl;
                     cin>>newSalary;         
                     emp.setSalary(newSalary);
                     break; 
 
                  case 2:
-                    cout<<"Entry New Address"<<endl;                      
-                    cin>>newAddress; 
+                    cout<<"Enter New Address: "<<endl; 
+                    cin.ignore();
+                    getline(cin,newAddress);                  
                     emp.setAddress(newAddress);
                     break;  
                 case 3: 
