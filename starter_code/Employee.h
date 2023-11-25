@@ -45,11 +45,15 @@ namespace Records {
 
 		bool isHired() const;
 
+		void setPassword(const std::string& passWord);
+		const std::string& getPassword() const;
+
 	private:
 		std::string mFirstName;
 		std::string mLastName;
 		std::string mMiddleName;
 		std::string mAddress;
+		std::string mpassWord;
 		int mEmployeeNumber = -1;
 		int mSalary = kDefaultStartingSalary;
 		bool mHired = false;

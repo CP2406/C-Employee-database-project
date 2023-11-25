@@ -67,6 +67,8 @@ int main()
         case 11:
            employeeDB.searchMenu();
             break;
+        case 12:
+            employeeDB.loginMenu();
 
         default:
 			cerr << "Unknown command." << endl;
@@ -103,6 +105,7 @@ int displayMenu()
     cout << "9) Load database from file" << endl;
     cout << "10) Edit employee" << endl;
     cout << "11) Search employee" << endl;
+    cout << "12) login menu" << endl;
     cout << "0) Quit" << endl;
     cout << endl;
     cout << "---> ";

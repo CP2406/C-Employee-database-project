@@ -15,6 +15,7 @@ namespace Records {
 		mLastName(lastName)
 	{
 	}
+
 	
 
 
@@ -117,5 +118,16 @@ namespace Records {
 	{
 		return mHired;
 	}
+
+	void Employee::setPassword(const string& passWord){
+		mpassWord=passWord;
+
+	}
+		const std::string& Employee::getPassword() const{
+
+			return mpassWord;
+		}
+
+
 
 }

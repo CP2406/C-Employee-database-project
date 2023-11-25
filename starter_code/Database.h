@@ -29,7 +29,9 @@ namespace Records {
 		void saveToFile() const;
 		void loadFromFile();
 		void searchMenu() const;
+		void loginMenu();
 		// Database searchByFirstName() const;
+	
 	
 	
 
