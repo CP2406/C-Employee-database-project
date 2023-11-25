@@ -16,7 +16,7 @@ void doHire(Database& db);
 void doFire(Database& db);
 void doPromote(Database& db);
 void doDemote(Database& db);
-void editEployee(Database& db);
+void doEdit(Database& db);
 
 Database makeNewDatabase();
 
@@ -61,9 +61,9 @@ int main()
         case 9:
             employeeDB.loadFromFile();
             break;
-        // case 10:
-        //     editEployee(employeeDB);
-        //     break;
+        case 10:
+            doEdit(employeeDB);
+            break;
         case 11:
            employeeDB.searchMenu();
             break;
@@ -161,6 +161,23 @@ void doPromote(Database& db)
         cerr << "Unable to promote employee: " << exception.what() << endl;
     }
 }
+
+
+void doEdit(Database& db)
+{
+     int employeeNumber;
+    cout << "Employee number? ";
+    cin >> employeeNumber;
+
+
+    try {
+        Employee& emp = db.getEmployee(employeeNumber);
+        emp.display();
+    } catch (const std::logic_error& exception) {
+        cerr << "Unable to promote employee: " << exception.what() << endl;
+    }
+}
+
 
 Database makeNewDatabase()
     {
