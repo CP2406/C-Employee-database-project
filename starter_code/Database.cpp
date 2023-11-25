@@ -277,4 +277,27 @@ namespace Records {
 		} 
 
 
+
+		void Database::loginMenu(){
+		int loginOption;
+		cout<<"Manage or Employee login? 1 for manager: 0 for employee "<<endl;
+		cin>>loginOption;
+		switch(loginOption){
+			case 0:
+				cout<<"Employee login enter your password: "<<endl;
+				
+				break;
+			case 1:
+				cout<<"Manager login enter your password: "<<endl;
+				break;
+			default:
+				cerr << "Unknown command." << endl;
+				break;			
+
+		}
+
+
+		}
+
+
 }
