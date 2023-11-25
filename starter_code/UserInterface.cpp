@@ -194,33 +194,30 @@ void doEdit(Database& db)
                     cout<<"Entry New Salary"<<endl;
                     cin>>newSalary;         
                     emp.setSalary(newSalary);
-                    emp.display();
                     break; 
 
                  case 2:
                     cout<<"Entry New Address"<<endl;                      
                     cin>>newAddress; 
                     emp.setAddress(newAddress);
-                    emp.display();
                     break;  
                 case 3: 
-                    cout << "Change Hire Status" << endl;
-                    cout << "Enter '1' to hire or '0' to fire: ";
+                    cout << "Edit to: Enter '1' to hire or '0' to fire: ";
                     cin >> hireStatus; 
                     if (hireStatus) {
                         emp.hire();
+                         cout<<"Hire Status Updated to : Hired" << endl;
                     } else {
                         emp.fire();
-                    } 
-                    emp.display();
+                        cout << "Hire Status Updated to : Fired" << endl;
+                    }  
                     break;
-
+                    
+                    emp.display();
 
                     }
 
             }
-		
-
 
     } catch (const std::logic_error& exception) {
         cerr << "Unable to promote employee: " << exception.what() << endl;
