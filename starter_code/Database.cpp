@@ -279,22 +279,31 @@ namespace Records {
 
 
 		void Database::loginMenu(){
-		int loginOption;
-		int managerLoginOption{1}; // manager default password
-		int employeeLoginOption{0}; // employee default password
-		cout<<"Manage or Employee login? 1 for manager: 0 for employee "<<endl;
-		cin>>loginOption;
-		switch(loginOption){
-			int employeeNumber;
+			int managerId{1}; // manager default Id
+			int employeeId{0}; // employee default Id
+			int loginOption;
+			cout<<"Employee login enter : 0 "<<endl;
+			cout<<"Manager login enter : 1 "<<endl;
+			cin>>loginOption;
+			int userInput;
+
+		switch(loginOption){			
 			case 0:
-				cout<<"Employee login "<<endl;				
-				cout << "Employee number? ";
-				cin >> employeeNumber;		
+				cout<<"Employee login  "<<endl;				
+				cout << "Employee ID? ";
+				cin >> userInput;
+				if (userInput==employeeId){
+					
+
+
+				}
+
+
 				break;
 			case 1:
 				cout<<"Manager login "<<endl;
-				cout << "Employee number? ";
-				cin >> employeeNumber;		
+				cout << "Manager ID? ";
+				cin >> userInput;		
 				break;
 			default:
 				cerr << "Unknown command." << endl;
