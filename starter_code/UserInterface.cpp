@@ -172,7 +172,36 @@ void doEdit(Database& db)
 
     try {
         Employee& emp = db.getEmployee(employeeNumber);
-        emp.display();
+        bool done = false;
+        while(!done){
+            emp.display();
+            int intOption;
+			cout << "1) Edit by salary" << endl;
+			cout << "2) Edit by address" << endl;
+			cout << "3) Edit hired" << endl;
+			cout << "0) Quit" << endl;
+            cin>>intOption;
+            switch(intOption){
+                case 0:
+                    cout<<"Quit editing"<<endl;
+                    done=true;
+                    break;
+                
+                case 1:
+                    cout<<"Edit by salary"<<endl;
+                    int newSalary;
+                    cin>>newSalary;
+                    emp.setSalary(newSalary);
+                    break;                  
+                    
+                    }
+
+            }
+		
+
+
+
+
     } catch (const std::logic_error& exception) {
         cerr << "Unable to promote employee: " << exception.what() << endl;
     }
