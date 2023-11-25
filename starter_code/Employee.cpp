@@ -47,6 +47,7 @@ namespace Records {
 		cout << (isHired() ? "Current Employee" : "Former Employee") << endl;
 		cout << "Employee Number: " << getEmployeeNumber() << endl;
 		cout << "Salary: $" << getSalary() << endl;	
+		cout << "Hire status: " << isHired() << endl;	
 		cout << endl;
 	}
 
@@ -113,8 +114,13 @@ namespace Records {
 		return mSalary;
 	}
 
-	bool Employee::isHired() const
+	bool Employee::isHired() const  
 	{
+		if(mHired){cout<<"Hired"<<endl;
+		}
+		else{
+			cout<<"Fired"<<endl;
+		}
 		return mHired;
 	}
 
