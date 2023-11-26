@@ -19,12 +19,16 @@ namespace Records {
 		Employee& addEmployee(const std::string& firstName,
 							  const std::string& lastName);	
 
-		Employee& createUser(const int& id, const std::string& password);
+		Employee& createUser(const int& id, const std::string& password);//稍后删除
 
 		Employee& addEmployee(
 			const std::string& firstName,
 			const std::string& middleName,
 			const std::string& lastName);
+		Employee& addEmployee(
+			const std::string& firstName,
+			const std::string& middleName,
+			const std::string& lastName,const int& id, const std::string& password);
 
 		Employee& getEmployee(int employeeNumber);
 
