@@ -10,7 +10,8 @@ namespace Records {
 		
 		}
 	Employee::Employee(const std::string& firstName, const std::string& middleName,
-		const std::string& lastName,const int& id, const std::string& password)
+		const std::string& lastName,const int& id, const std::string& password):mFirstName(firstName), mMiddleName(middleName),
+		mLastName(lastName),m_id(id),mpassWord(password)
 		{
 
 		}
