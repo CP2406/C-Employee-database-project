@@ -11,6 +11,20 @@
 using namespace std;
 
 namespace Records {
+		Employee& Database::addEmployee(
+			const std::string& firstName,
+			const std::string& middleName,
+			const std::string& lastName,const int& id, const std::string& password){
+			log("started");
+			Employee theEmployee(firstName, middleName,lastName,id,password);
+			theEmployee.setEmployeeNumber(mNextEmployeeNumber++);
+			theEmployee.hire();
+			theEmployee.setId(mNextUserId++);
+			theEmployee.setPassword(mNextUserPassword);//set all password same as default
+			mEmployees.push_back(theEmployee);
+			log("end");
+			return mEmployees[mEmployees.size() - 1];//暂时不改到mUser
+			}
 
 	Employee& Database::createUser(const int& id, const std::string& password)
 		{
@@ -290,31 +304,45 @@ namespace Records {
 
 
 		void Database::loginMenu(){
-			int managerId{1}; // manager default Id
-			int employeeId{0}; // employee default Id
+			int managerPassword{1}; // manager default password
+			int employeePassword{0}; // employee default password
 			int loginOption;
-			cout<<"Employee login enter : 0 "<<endl;
-			cout<<"Manager login enter : 1 "<<endl;
+			cout<<"Enter following option number"<<endl;
+			cout<<" 0) login by Employee"<<endl;
+			cout<<" 1) login by Manager"<<endl;
 			cin>>loginOption;
 			int userInput;
 
 		switch(loginOption){			
-			case 0:
-				cout<<"Employee login  "<<endl;				
-				cout << "Employee ID? ";
-				cin >> userInput;
-				if (userInput==employeeId){
+			// case 0:
+			// 	cout<<"Employee login  "<<endl;				
+			// 	cout << "Employee password? ";
+			// 	cin >> userInput;
+			// 	if (userInput==employeeId){
 					
 
+			// 	}
+
+
+			// 	break;
+			case 1:
+				cout<<"Manager login "<<endl;
+				cout << "Manager Password? ";
+				cin >> userInput;
+				if (userInput==managerPassword){
+					// which user you want to edit?
+					// user Id ?
+					// user Id match(get user iD from mUser)
+					//EDIT password or id?
+					// User.set ID 
+					// User.set password
 
 				}
 
 
-				break;
-			case 1:
-				cout<<"Manager login "<<endl;
-				cout << "Manager ID? ";
-				cin >> userInput;		
+
+
+
 				break;
 			default:
 				cerr << "Unknown command." << endl;

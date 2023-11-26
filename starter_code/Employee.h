@@ -14,6 +14,9 @@ namespace Records {
 		Employee(const std::string& firstName, 
 				const std::string& middleName,
 				const std::string& lastName);
+		Employee(const std::string& firstName, 
+				const std::string& middleName,
+				const std::string& lastName,const int& id, const std::string& password);
 
 
 		void promote(int raiseAmount = 1000);
