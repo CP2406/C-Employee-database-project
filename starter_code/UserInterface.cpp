@@ -160,6 +160,7 @@ void doPromote(Database& db)
     try {
         Employee& emp = db.getEmployee(employeeNumber);
         emp.promote(raiseAmount);
+        emp.display();
     } catch (const std::logic_error& exception) {
         cerr << "Unable to promote employee: " << exception.what() << endl;
     }
