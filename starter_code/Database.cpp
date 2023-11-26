@@ -202,12 +202,10 @@ namespace Records {
 						// result.addEmployee(e);
 					}
 			}
-			cout<<"finished 1"<<endl;
 			if (!foundMatch) 
 				{
 					cout << "No match" << endl;
 				}
-		cout<<"finished 2"<<endl;
 		return result;
 		
 
