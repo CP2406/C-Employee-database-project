@@ -44,7 +44,7 @@ namespace Records {
 		void loadFromFile();
 		void searchMenu() const;
 		void loginMenu();
-		Database newUserDatabase();
+		
 	
 
 	private:

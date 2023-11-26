@@ -17,9 +17,10 @@ void doFire(Database& db);
 void doPromote(Database& db);
 void doDemote(Database& db);
 void doEdit(Database& db);
+void loginMenu(Database& db);
 
 Database makeNewDatabase();
-// Database newUserDatabase();
+Database newUserDatabase();
 
 int main()
     {
@@ -70,8 +71,8 @@ int main()
             employeeDB.searchMenu();
                 break;
             case 12:
-                 userDB=userDB.newUserDatabase();
-                 userDB.loginMenu();
+                 userDB=newUserDatabase();
+                 loginMenu(userDB);
                 break;
             default:
                 cerr << "Unknown command." << endl;
@@ -288,3 +289,91 @@ Database makeNewDatabase()
     }
 
 
+		void loginMenu(Database& db)
+		{
+			int managerPassword{1}; // manager default password
+			int employeePassword{0}; // employee default password
+            db.displayAll();
+
+			// int loginOption;
+			// cout<<"Enter following option number"<<endl;
+			// cout<<" 0) login by Employee"<<endl;
+			// cout<<" 1) login by Manager"<<endl;
+			// cin>>loginOption;
+			
+
+					// switch(loginOption){			
+					// 	// case 0:
+					// 	// 	cout<<"Employee login  "<<endl;				
+					// 	// 	cout << "Employee password? ";
+					// 	// 	cin >> userInput;
+					// 	// 	if (userInput==employeeId){
+								
+
+					// 	// 	}
+
+
+					// 	// 	break;
+					// 	case 1:
+					// 		cout<<"Manager login "<<endl;
+					// 		cout << "Manager Password? ";
+					// 		cin >> userInput;
+					// 		if (userInput==managerPassword){
+					// 			// which user you want to edit?
+					// 			// user Id ?
+					// 			// user Id match(get user iD from mUser)
+					// 			//EDIT password or id?
+					// 			// User.set ID 
+					// 			// User.set password
+
+					// 		}
+
+					// 		break;
+					// 	default:
+					// 		cerr << "Unknown command." << endl;
+					// 		break;			
+
+					// }
+
+
+		}
+
+
+
+	Database newUserDatabase()
+
+     {
+        vector<string> arrFirst{
+
+            "first1","Ann","Bob","first2","Cathy",
+        };
+        vector<string> arrMiddle{
+
+            "middle1","Don","Bob","first2","Cathy",            
+        };
+
+        vector<string> arrLast{
+
+            "last1","Smith","Lily","Steven","Jim",
+        };
+        Database dbUser;
+        int count=0;
+
+        for (const string& firstName:arrFirst){
+            for (const string& middleName:arrMiddle){
+                for (const string& lastName:arrLast){
+                count++;
+                //random streetNumber
+                string countStr =to_string(count); //countStr = password string
+    
+                Employee& empl=dbUser.addEmployee(firstName, middleName,lastName,count,countStr);// count=id 
+                string address =countStr + " street# " + "Cairns";
+                empl.setAddress(address);
+                
+   
+                }
+            }
+        }
+        return dbUser;
+
+}
