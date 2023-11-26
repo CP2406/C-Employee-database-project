@@ -295,45 +295,64 @@ Database makeNewDatabase()
 			int employeePassword{0}; // employee default password
             db.displayAll();
 
-			// int loginOption;
-			// cout<<"Enter following option number"<<endl;
-			// cout<<" 0) login by Employee"<<endl;
-			// cout<<" 1) login by Manager"<<endl;
-			// cin>>loginOption;
+            int userInput;
+			int loginOption;
+			cout<<"Enter following option number"<<endl;
+			cout<<" 0) login by Employee"<<endl;
+			cout<<" 1) login by Manager"<<endl;
+			cin>>loginOption;
 			
 
-					// switch(loginOption){			
-					// 	// case 0:
-					// 	// 	cout<<"Employee login  "<<endl;				
-					// 	// 	cout << "Employee password? ";
-					// 	// 	cin >> userInput;
-					// 	// 	if (userInput==employeeId){
+					switch(loginOption){			
+						// case 0:
+						// 	cout<<"Employee login  "<<endl;				
+						// 	cout << "Employee password? ";
+						// 	cin >> userInput;
+						// 	if (userInput==employeeId){
 								
 
-					// 	// 	}
+						// 	}
 
 
-					// 	// 	break;
-					// 	case 1:
-					// 		cout<<"Manager login "<<endl;
-					// 		cout << "Manager Password? ";
-					// 		cin >> userInput;
-					// 		if (userInput==managerPassword){
-					// 			// which user you want to edit?
-					// 			// user Id ?
-					// 			// user Id match(get user iD from mUser)
-					// 			//EDIT password or id?
-					// 			// User.set ID 
-					// 			// User.set password
+						// 	break;
+						case 1:
+							cout<<"Manager login "<<endl;
+							cout << "Manager Password? ";
+							cin >> userInput;
+							if (userInput==managerPassword){
+								// which user you want to edit?
+								// user Id ?
+								// user Id match(get user iD from mUser)
+								//EDIT password or id?
+								// User.set ID 
+								// User.set password
 
-					// 		}
+							}
 
-					// 		break;
-					// 	default:
-					// 		cerr << "Unknown command." << endl;
-					// 		break;			
+							break;
+						default:
+							cerr << "Unknown command." << endl;
+							break;			
 
-					// }
+					}
+
+
+    //     void doFire(Database& db)
+    // {  
+    //     int employeeNumber;
+
+    //     cout << "Employee number? ";
+    //     cin >> employeeNumber;
+    
+
+    //     try {
+    //         Employee& emp = db.getEmployee(employeeNumber);
+    //         emp.fire();
+    //         cout << "Employee " << employeeNumber << " terminated." << endl;
+    //     } catch (const std::logic_error& exception) {
+    //         cerr << "Unable to terminate employee: " << exception.what() << endl;
+    //     }
+    // }
 
 
 		}
