@@ -12,6 +12,17 @@ using namespace std;
 
 namespace Records {
 
+	Employee& Database::createUser(const int& id, const std::string& password)
+		{
+			log("started");
+			Employee theUser(id, password);
+			theUser.setId(mNextUserId++);
+			theUser.setPassword(mNextUserPassword);//set all password same as default
+			mUsers.push_back(theUser);
+			log("end");
+			return mUsers[mUsers.size() - 1];
+		}
+
 	Employee& Database::addEmployee(const string& firstName,
 	const string& lastName)
 		{
