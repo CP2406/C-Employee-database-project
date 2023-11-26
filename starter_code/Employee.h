@@ -8,6 +8,7 @@ namespace Records {
 	{
 	public:
 		Employee() = default;
+		Employee(const int& id, const std::string& password);
 
 		Employee(const std::string& firstName, const std::string& lastName);
 		Employee(const std::string& firstName, 
@@ -48,14 +49,18 @@ namespace Records {
 		void setPassword(const std::string& passWord);
 		const std::string& getPassword() const;
 
+		void setId(const int& id);
+		const int& getId() const;
 	private:
 		std::string mFirstName;
 		std::string mLastName;
 		std::string mMiddleName;
 		std::string mAddress;
 		std::string mpassWord;
+		int m_id;
 		int mEmployeeNumber = -1;
 		int mSalary = kDefaultStartingSalary;
 		bool mHired = false;
+
 	};
 }

@@ -4,6 +4,10 @@
 using namespace std;
 
 namespace Records {
+
+	Employee::Employee(const int& id, const std::string& password):m_id(id),mpassWord(password){
+	
+	}
 	
 	Employee::Employee(const std::string& firstName, const std::string& lastName)
 		: mFirstName(firstName)
@@ -128,6 +132,13 @@ namespace Records {
 			return mpassWord;
 		}
 
+	void Employee::setId(const int& id){
+		m_id=id;
 
+	}
+	const int& Employee::getId() const{
+		return m_id;
+
+	}
 
 }
