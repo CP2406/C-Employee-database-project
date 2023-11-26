@@ -6,6 +6,8 @@
 #include <cstddef>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
+
 
 using namespace std;
 using namespace Records;
@@ -288,72 +290,128 @@ Database makeNewDatabase()
         return db;
     }
 
-
 		void loginMenu(Database& db)
 		{
+            int employeePassword{0}; // employee default password
 			int managerPassword{1}; // manager default password
-			int employeePassword{0}; // employee default password
+
             db.displayAll();
 
             int userInput;
 			int loginOption;
-			cout<<"Enter following option number"<<endl;
+			cout<<"Login Option Menu"<<endl;
 			cout<<" 0) login by Employee"<<endl;
 			cout<<" 1) login by Manager"<<endl;
+            cout<<"Enter Your Option:";
 			cin>>loginOption;
-			
-
 					switch(loginOption){			
-						// case 0:
-						// 	cout<<"Employee login  "<<endl;				
-						// 	cout << "Employee password? ";
-						// 	cin >> userInput;
-						// 	if (userInput==employeeId){
-								
+						case 0:
+                            {
+                                cout<<"Login By Employee !"<<endl;			
+                                cout << "Enter Employee password:  ";
+                                cin >> userInput;
+                                if (userInput==employeePassword)
+                                {
+                                    int employeeNumber;
+                                    cout << "Enter employeeNumber to view: ";
+                                    cin >> employeeNumber;
+                                    try 
+                                        {
+                                            Employee&  user = db.getEmployee(employeeNumber);
+                                            user.getPassword();
+                                            user.getId();
+                                            cout<<"**********************"<<endl;
+                                            cout <<"View Your record : "<<endl;
+                                            cout<< "Your Id: " << user.getId()<<endl;
+                                            cout <<"your password: "<<user.getPassword()<< endl;
+                                        } 
+                                    catch (const std::logic_error& exception) 
+                                        {
+                                            cerr << "Unable to find Employee " << exception.what() << endl;
+                                        }
+                                }
 
-						// 	}
-
-
-						// 	break;
+                            }
+                            break;
 						case 1:
-							cout<<"Manager login "<<endl;
-							cout << "Manager Password? ";
+							cout<<"Login By Manager! "<<endl;
+							cout << "Enter Manager Password: ";
 							cin >> userInput;
-							if (userInput==managerPassword){
-								// which user you want to edit?
-								// user Id ?
-								// user Id match(get user iD from mUser)
-								//EDIT password or id?
-								// User.set ID 
-								// User.set password
+                        if (userInput==managerPassword)
+                        {
+                    
+                            int employeeNumber;
+                            cout << "Enter Employee Number To Edit ? ";
+                            cin >> employeeNumber;
 
-							}
+                            try 
+                                {
+                                Employee& emp = db.getEmployee(employeeNumber);
+                                bool done = false;
 
-							break;
-						default:
-							cerr << "Unknown command." << endl;
-							break;			
+                                while(!done)
+                                {
+                                    emp.display();
+
+                                    int intOption;
+                                    cout<<"Enter Your Option Number: "<<endl;
+                                    cout << "1) Create/edit User's ID" << endl;
+                                    cout << "2) Create/edit User's Password" << endl;                             
+                                    cout << "3) Delete User's ID & Password"<<endl;
+                                    cout << "0) Quit" << endl;
+                                    cin>>intOption;
+
+                                    int newId;
+                                    string newPassword; 
+                                    // bool hireStatus;            
+                                    switch(intOption)
+                                    {
+                                        case 0:
+                                            cout<<"Quit editing"<<endl;
+                                            done=true;
+                                            break;
+                                        case 1:   
+                                            cout<<"Enter New ID: "<<endl;
+                                            cin>>newId;         
+                                            emp.setId(newId);
+                                            break; 
+
+                                        case 2:
+                                            cout<<"Enter New Password: "<<endl; 
+                                            cin.ignore();
+                                            getline(cin,newPassword);                  
+                                            emp.setPassword(newPassword);
+                                            break;  
+                                            
+
+                                        case 3:
+                                            {
+                                                cout << "Deleting User's ID & Password" << endl;
+                                                db.removeEmployee(employeeNumber);
+                                                cout <<"User's ID & Password deleted" << endl;
+                                                done = true;
+                                                break;
+                                            }
+
+                                        emp.display();
+
+                                    }
+
+                                }       
+
+                            } 
+
+                            catch (const std::logic_error& exception) 
+                                {
+                                    cerr << "Unable to find employee: " << exception.what() << endl;
+                                }
+                    }
+					  break;
+                    default:
+                        cerr << "Unknown command." << endl;
+                        break;			
 
 					}
-
-
-    //     void doFire(Database& db)
-    // {  
-    //     int employeeNumber;
-
-    //     cout << "Employee number? ";
-    //     cin >> employeeNumber;
-    
-
-    //     try {
-    //         Employee& emp = db.getEmployee(employeeNumber);
-    //         emp.fire();
-    //         cout << "Employee " << employeeNumber << " terminated." << endl;
-    //     } catch (const std::logic_error& exception) {
-    //         cerr << "Unable to terminate employee: " << exception.what() << endl;
-    //     }
-    // }
-
 
 		}
 

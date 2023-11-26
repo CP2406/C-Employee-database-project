@@ -32,7 +32,7 @@ namespace Records {
 
 		Employee& getEmployee(int employeeNumber);
 
-		Employee& getUser(int UserIdNumber);
+		Employee& getUserFromId(int userId);
 		
 		Employee& getEmployee(const std::string& firstName,
 							  const std::string& lastName);
@@ -45,11 +45,12 @@ namespace Records {
 		void searchMenu() const;
 		void loginMenu();
 		
+	void removeEmployee(int employeeNumber);
 	
-
 	private:
 		std::vector<Employee> mEmployees;
 		std::vector<Employee> mUsers;
+		
 		int mNextEmployeeNumber = kFirstEmployeeNumber;
 		int mNextUserId = kFirstUerId;
 		std::string mNextUserPassword=KFirstPassword;

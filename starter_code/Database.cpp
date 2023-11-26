@@ -7,6 +7,8 @@
 #include <string>
 #include <sstream>
 #include <ostream>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -72,6 +74,17 @@ namespace Records {
 			throw logic_error("No employee found.");
 		}
 
+	Employee& Database::getUserFromId(int userId)
+	{
+		for (auto& user : mUsers) {
+			if (user.getId()==userId) {
+				return user;
+			}
+		}
+		throw logic_error("No User found.");
+	}
+
+
 	Employee& Database::getEmployee(const string& firstName, const string& lastName)
 		{
 			for (auto& employee : mEmployees) {
@@ -105,6 +118,17 @@ namespace Records {
 					employee.display();
 			}
 		}
+
+	void Database::removeEmployee(int employeeNumber) {
+        auto it = std::remove_if(mUsers.begin(), mUsers.end(),
+            [employeeNumber](const Employee& emp) { return emp.getId() == employeeNumber; });
+
+        if (it != mUsers.end()) {
+            mUsers.erase(it, mUsers.end());
+        } else {
+            throw std::logic_error("Employee not found");
+        }
+    }
 
 	string getSearchString(){
 		string searchTag;
